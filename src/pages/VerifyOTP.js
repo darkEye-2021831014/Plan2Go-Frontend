@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { API_BASE_URL } from '../config';
+import { useAuth } from '../context/AuthContext';
 
 const VerifyOTP = () => {
     // const { verifyOtp } = useAuth();
