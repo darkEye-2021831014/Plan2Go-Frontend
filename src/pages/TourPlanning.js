@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 const TourPlanning = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ const TourPlanning = () => {
         locationType: formData.locationType,
       };
 
-      const response = await fetch('http://localhost:8080/users/plan', {
+      const response = await fetch(`${API_BASE_URL}/users/plan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody),

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
 import { useAuth } from "../context/AuthContext";
 
 const TourGuides = () => {
@@ -29,7 +30,7 @@ const TourGuides = () => {
       setLoading(true);
       setServerError("");
       try {
-        const response = await fetch("http://localhost:8080/users/guide", {
+        const response = await fetch(`${API_BASE_URL}/users/guide`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ city: "" }), // empty means fetch all

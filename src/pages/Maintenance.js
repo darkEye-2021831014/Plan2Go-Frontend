@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from '../config';
 import { useAuth } from "../context/AuthContext";
-import ActivityLogger from '../helper/activityloger';
-
 
 const Maintenance = () => {
   // Security state
@@ -57,7 +56,7 @@ const Maintenance = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/users/activity/track', {
+      const response = await fetch(`${API_BASE_URL}/users/activity/track`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +87,7 @@ const Maintenance = () => {
       const token = localStorage.getItem("plan2go_token");
 
       const res = await fetch(
-        "http://localhost:8080/users/update/profile",
+        `${API_BASE_URL}/users/update/profile`,
         {
           method: "POST",
           headers: {
@@ -140,7 +139,7 @@ const Maintenance = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/users/guide/register",
+        `${API_BASE_URL}/users/guide/register`,
         {
           method: "POST",
           headers: {
@@ -206,7 +205,7 @@ const Maintenance = () => {
     try {
       const token = localStorage.getItem("plan2go_token");
 
-      const res = await fetch("http://localhost:8080/users/update/password", {
+      const res = await fetch(`${API_BASE_URL}/users/update/password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -252,7 +251,7 @@ const Maintenance = () => {
     setActivityLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/users/activity", {
+      const response = await fetch(`${API_BASE_URL}/users/activity`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

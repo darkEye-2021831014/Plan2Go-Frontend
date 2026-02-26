@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import { API_BASE_URL } from "../config";
 
 export default function ActivityLogger({ userId, action, description }) {
   useEffect(() => {
     // if (!userId || !action) return;
 
-    fetch("http://localhost:8080/users/activity/track", {
+    fetch(`${API_BASE_URL}/users/activity/track`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -18,7 +18,7 @@ const Navbar = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/users/activity/track', {
+      const response = await fetch(`${API_BASE_URL}/users/activity/track`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

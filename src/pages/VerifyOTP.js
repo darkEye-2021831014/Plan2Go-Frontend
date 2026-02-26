@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
 
 const VerifyOTP = () => {
     // const { verifyOtp } = useAuth();
@@ -51,7 +52,7 @@ const VerifyOTP = () => {
                 return;
             }
 
-            const res = await fetch('http://localhost:8080/users/resend-otp', {
+            const res = await fetch(`${API_BASE_URL}/users/resend-otp`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`

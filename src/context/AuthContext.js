@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await fetch('http://localhost:8080/users/login', {
+      const res = await fetch(`${API_BASE_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
       if (data.success && data.token) {
         localStorage.setItem('plan2go_token', data.token);
 
-        const profileRes = await fetch('http://localhost:8080/users/profile', {
+        const profileRes = await fetch(`${API_BASE_URL}/users/profile`, {
           headers: { Authorization: `Bearer ${data.token}` },
         });
         const userData = await profileRes.json();
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (formData) => {
     try {
-      const res = await fetch('http://localhost:8080/users', {
+      const res = await fetch(`${API_BASE_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
 
   const verifyOtp = async (otp, email) => {
     try {
-      const res = await fetch('http://localhost:8080/users/verify', {
+      const res = await fetch(`${API_BASE_URL}/users/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ otp, email }),
