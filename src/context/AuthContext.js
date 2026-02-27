@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, Component } from 'react';
 import { API_BASE_URL } from '../config';
 
 const AuthContext = createContext();
@@ -37,12 +37,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
+      console.log('Attempting login with:', { email, password });
       const res = await fetch(`${API_BASE_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
+      console.log('Login response:', data);
 
       if (data.success && data.token) {
         localStorage.setItem('plan2go_token', data.token);
