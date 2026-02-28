@@ -37,14 +37,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      console.log('url:', `${API_BASE_URL}/users/login`);
       const res = await fetch(`${API_BASE_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      console.log('Login response:', data);
 
       if (data.success && data.token) {
         localStorage.setItem('plan2go_token', data.token);
@@ -83,6 +81,8 @@ export const AuthProvider = ({ children }) => {
 
       if (data.success) {
         localStorage.setItem('plan2go_token', data.token);
+        localStorage.setItem('plan2go_otp', data.otp);
+
 
         return { success: true, email: formData.email };
       } else {

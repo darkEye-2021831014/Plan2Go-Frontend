@@ -8,8 +8,9 @@ const VerifyOTP = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const email = location.state?.email;
+    const correctOtp = localStorage.getItem('plan2go_otp');
 
-    const [otp, setOtp] = useState('');
+    const [otp, setOtp] = useState(correctOtp || '');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const { verifyOtp, setUser } = useAuth();
@@ -62,7 +63,10 @@ const VerifyOTP = () => {
             const data = await res.json();
 
             if (!data.success) setError(data.error || 'Failed to resend OTP');
-            else alert('OTP resent successfully!');
+            else {
+                alert('OTP resent successfully!');
+                setOtp(data.otp);
+            }
         } catch (err) {
             console.error(err);
             setError('Server error');
